@@ -10,6 +10,26 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            SaveStudentToDb();
+            Console.WriteLine("Student saved!");
+            Console.ReadLine();
+        }
+
+        public static void SaveStudentToDb()
+        {
+            using (var db = new StudentDbContext())
+            {
+                var student = new Student
+                {
+                    Name = "Niels Odgaard",
+                    Phone = "51410927",
+                    DateTime = DateTime.Now
+                };
+                db.Students.Add(student);              
+                db.SaveChanges();
+
+                
+            }
         }
     }
 }
